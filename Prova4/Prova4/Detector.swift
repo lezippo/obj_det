@@ -28,6 +28,50 @@ extension ViewController {
         DispatchQueue.main.async(execute: {
             if let results = request.results {
                 self.extractDetections(results)
+                
+                var displayText = ""
+                
+//                for result in results.prefix(5) {
+//                    displayText += "\(Int(result.confidence * 100))%" + result.description + "\n"
+//                            }
+                
+                guard let label = self.labels.first else { return }
+                
+                displayText = "\(label.identifier)"
+                
+                print(displayText)
+                
+                let isHighContrastEnabled = UIAccessibility.isDarkerSystemColorsEnabled
+                
+                self.yourLabel.text = displayText
+                self.yourLabel.adjustsFontForContentSizeCategory = true
+                self.yourLabel.font = UIFont.preferredFont(forTextStyle: .extraLargeTitle)
+                self.yourLabel.textAlignment = .center
+                self.yourLabel.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.6)
+                if isHighContrastEnabled {
+                    self.yourLabel.textColor = UIColor.white
+                    self.yourLabel.backgroundColor = UIColor.black
+                }
+                else {
+                    self.yourLabel.textColor = UIColor(white: 1.0, alpha: 0.8)
+                }
+                
+//                displayText.textColor(UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0))
+                    
+
+                
+//                var resultLabel = UILabel()
+//                resultLabel.text = ""
+//                resultLabel.frame = CGRect(x: 30, y: UIScreen.main.bounds.height - 290, width: UIScreen.main.bounds.width - 60, height: 80)
+//               
+//                resultLabel.textColor = UIColor.black
+//                resultLabel.textAlignment = NSTextAlignment.center
+//                resultLabel.font = UIFont.boldSystemFont(ofSize: 20.0)
+//                resultLabel.backgroundColor = UIColor(red: 255, green: 255, blue: 255, alpha: 0.7)
+//                
+//                self.addSubview(resultLabel)
+//                resultLabel.layer.cornerRadius = 25
+//                resultLabel.layer.masksToBounds = true
             }
         })
     }
@@ -37,6 +81,8 @@ extension ViewController {
      
         for observation in results where observation is VNRecognizedObjectObservation {
             guard let objectObservation = observation as? VNRecognizedObjectObservation else {  continue }
+            
+            labels = objectObservation.labels
             
             let objectBounds = VNImageRectForNormalizedRect(objectObservation.boundingBox, Int(screenRect.size.width), Int(screenRect.size.height))
             let transformedBounds = CGRect(x: objectBounds.minX, y: screenRect.size.height - objectBounds.maxY, width: objectBounds.maxX - objectBounds.minX, height: objectBounds.maxY - objectBounds.minY)
@@ -51,6 +97,11 @@ extension ViewController {
         detectionLayer = CALayer()
         detectionLayer.frame = CGRect(x: 0, y: 0, width: screenRect.size.width, height: screenRect.size.height)
         self.view.layer.addSublayer(detectionLayer)
+        
+        yourLabel = UILabel(frame: CGRect(x: 0, y: 0, width: screenRect.size.width, height: 155))
+        yourLabel.text = "Initial Text"
+        yourLabel.layer.zPosition = 100
+        self.view.addSubview(yourLabel)
     }
     
     func updateLayers() {

@@ -8,12 +8,15 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    
     var body: some View {
         
         ZStack {
             
             HostedViewController()
                 .ignoresSafeArea()
+                .accessibilitySortPriority(/*@START_MENU_TOKEN@*/1/*@END_MENU_TOKEN@*/)
             
             VStack {
                 
@@ -56,7 +59,7 @@ struct ContentView: View {
                                     Image(systemName: "minus")
                                         .foregroundColor(.white)
                                     Slider(value: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Value@*/.constant(10)/*@END_MENU_TOKEN@*/)
-                                        .tint(.yellow)
+                                        .tint(.myyellow)
                                     Image(systemName: "plus")
                                         .foregroundColor(.white)
                                 }
@@ -138,7 +141,7 @@ struct ContentView: View {
                                             .frame(width: 50, height: 50)
                                         
                                         Image(systemName: "captions.bubble")
-                                            .foregroundColor(.yellow)
+                                            .foregroundColor(.myyellow)
                                         
                                         
                                     }

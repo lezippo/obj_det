@@ -21,6 +21,10 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
     private var videoOutput = AVCaptureVideoDataOutput()
     var requests = [VNRequest]()
     var detectionLayer: CALayer! = nil
+    
+    var yourLabel = UILabel()
+    
+    var labels: [VNClassificationObservation] = []
   
   override func viewDidLoad() {
         checkPermission()
