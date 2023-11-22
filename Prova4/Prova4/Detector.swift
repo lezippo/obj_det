@@ -99,7 +99,7 @@ extension ViewController {
         self.view.layer.addSublayer(detectionLayer)
         
         yourLabel = UILabel(frame: CGRect(x: 0, y: 0, width: screenRect.size.width, height: 155))
-        yourLabel.text = "Initial Text"
+        yourLabel.text = ""
         yourLabel.layer.zPosition = 100
         self.view.addSubview(yourLabel)
     }

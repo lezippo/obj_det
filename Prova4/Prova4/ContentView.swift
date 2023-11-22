@@ -16,7 +16,7 @@ struct ContentView: View {
             
             HostedViewController()
                 .ignoresSafeArea()
-                .accessibilitySortPriority(/*@START_MENU_TOKEN@*/1/*@END_MENU_TOKEN@*/)
+                .accessibilitySortPriority(1)
             
             VStack {
                 
@@ -34,12 +34,15 @@ struct ContentView: View {
                     
                     VStack {
                         
-                        Image(systemName: "chevron.compact.down")
-                            .font(.system(size: 40))
-                            .foregroundColor(.white)
-                            .opacity(/*@START_MENU_TOKEN@*/0.8/*@END_MENU_TOKEN@*/)
-                            .padding(.top, 20.0)
+                        Button {} label: {
+                            Image(systemName: "chevron.compact.down")
+                                .font(.system(size: 40))
+                                .foregroundColor(.white)
+                                .opacity(/*@START_MENU_TOKEN@*/0.8/*@END_MENU_TOKEN@*/)
+                                .padding(.top, 20.0)
                             .accessibilityLabel("Card controller, full size. Drag to hide controllers, actions available ")
+                        }
+//                        .accessibilitySortPriority(2)
                         
                         ZStack {
                             
@@ -64,8 +67,9 @@ struct ContentView: View {
                                         .foregroundColor(.white)
                                 }
                                 .padding(.horizontal, 30.0)
+//                                .accessibilitySortPriority(3)
                                 .accessibilityElement(children: .combine)
-                                .accessibilityLabel("Zoom 100%")
+                                .accessibilityLabel("Zoom")
                             }
                         }
                         
@@ -86,6 +90,7 @@ struct ContentView: View {
                                         
                                     }
                                 }
+//                                .accessibilitySortPriority(4)
                                 .accessibilityLabel("Cameras")
                                 
                                 Button {} label: {
@@ -101,6 +106,7 @@ struct ContentView: View {
                                         
                                     }
                                 }
+//                                .accessibilitySortPriority(5)
                                 .accessibilityLabel("Brightness 50%")
                                 
                                 Button {} label: {
@@ -116,6 +122,7 @@ struct ContentView: View {
                                         
                                     }
                                 }
+//                                .accessibilitySortPriority(6)
                                 .accessibilityLabel("Contrast, 50%")
                                 
                                 Button {} label: {
@@ -131,7 +138,8 @@ struct ContentView: View {
                                         
                                     }
                                 }
-                                .accessibilityLabel("Torch, off")
+//                                .accessibilitySortPriority(7)
+                                .accessibilityLabel("Camera filters")
                                 
                                 Button {} label: {
                                     ZStack {
@@ -146,6 +154,7 @@ struct ContentView: View {
                                         
                                     }
                                 }
+//                                .accessibilitySortPriority(8)
                                 .accessibilityLabel("Image descriptions, on")
 
                                 
@@ -173,6 +182,7 @@ struct ContentView: View {
                                     
                                 }
                             }
+//                            .accessibilitySortPriority(9)
                             .accessibilityLabel("Settings")
                             
                             Spacer()
@@ -188,6 +198,7 @@ struct ContentView: View {
                                     
                                 }
                             }
+//                            .accessibilitySortPriority(10)
                             .accessibilityLabel("Freeze frame")
                             
                             Spacer()
@@ -205,6 +216,7 @@ struct ContentView: View {
                                     
                                 }
                             }
+//                            .accessibilitySortPriority(0)
                             .accessibilityLabel("Multi-photo mode")
                             
                         }
@@ -214,6 +226,7 @@ struct ContentView: View {
                     .padding(.bottom, 50.0)
                     
                 }
+//                .accessibilitySortPriority(0)
             }
             .ignoresSafeArea()
         }
